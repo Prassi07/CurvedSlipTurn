@@ -23,13 +23,15 @@ function GenerateCustomTurn(radius, cycleStepLength, turnDirection)
     global Zo
     global H
     global K
+    factor =1.2;
     %Set Robot Parameters (l1,l2,l3,l4,l5,PelvisDistance(2K),CoMPlaneHeight, StepHeight, FootDimension(lx), FootDimension(ly))
-    SetRobotParameters(45,65,65,50,17,65,210,20,122,87);
+    %SetRobotParameters(45,65,65,50,17,65,210,20,122,87); %FOR TONY
+    SetRobotParameters(1,93,93,1,33.5,90,205,20,104,66); %FOR Simulation Darwin-OP
     %Set Walk Parameters(Walk Phase Period(T1), Slip Phase Period(T2), Restoration Phase Period(T3), InterStepDistance, Xinit)
-    SetWalkParameters(1,1,1,1,43);
+    SetWalkParameters(1,1,1,5,40);
     %Calculate Turn Parameters using Cycle Length and radius
     [L1 ,DelY] = predictTurnParameters(cycleStepLength,radius);
-    fileID = fopen('Smooth_Turn.txt','w');
+    fileID = fopen('Smooth_Turn_Sim.txt','w');
     t=0;
     while (t<=T1)
         %Walk Phase, by a Distance of L1
@@ -57,7 +59,7 @@ function GenerateCustomTurn(radius, cycleStepLength, turnDirection)
              %Turn Clockwise
              [te1,te2,te3,te4,te5]=SolveIK(xrf,yrf,zrf,xr1,yr1,zr1,'r');
              [te6,te7,te8,te9,te10]=SolveIK(xlf,ylf,zlf,xl1,yl1,zl1,'l');
-             thetas = [te1 te2 te3 te4 te5 te6 te7 te8 te9 te10];
+             thetas = [te1*factor te2 te3 te4 te5*factor te6*factor te7 te8 te9 te10*factor];
         end
         fprintf(fileID,'%d\t',round(thetas));
         fprintf(fileID,'\n');
@@ -94,7 +96,7 @@ function GenerateCustomTurn(radius, cycleStepLength, turnDirection)
              %Turn Clockwise
              [te1,te2,te3,te4,te5]=SolveIK(xrf,yrf,zrf,xr1,yr1,zr1,'r');
              [te6,te7,te8,te9,te10]=SolveIK(xlf,ylf,zlf,xl1,yl1,zl1,'l');
-             thetas = [te1 te2 te3 te4 te5 te6 te7 te8 te9 te10];
+             thetas = [te1*factor te2 te3 te4 te5*factor te6*factor te7 te8 te9 te10*factor];
         end
       fprintf(fileID,'%d\t',round(thetas));
       fprintf(fileID,'\n'); 
@@ -145,7 +147,7 @@ function GenerateCustomTurn(radius, cycleStepLength, turnDirection)
              %Turn Clockwise
              [te1,te2,te3,te4,te5]=SolveIK(xrf,yrf,zrf,xr1,yr1,zr1,'r');
              [te6,te7,te8,te9,te10]=SolveIK(xlf,ylf,zlf,xl1,yl1,zl1,'l');
-             thetas = [te1 te2 te3 te4 te5 te6 te7 te8 te9 te10];
+             thetas = [te1*factor te2 te3 te4 te5*factor te6*factor te7 te8 te9 te10*factor];
         end
         fprintf(fileID,'%d\t',round(thetas));
         fprintf(fileID,'\n');
@@ -214,7 +216,7 @@ function GenerateCustomTurn(radius, cycleStepLength, turnDirection)
                  %Turn Clockwise
                  [te1,te2,te3,te4,te5]=SolveIK(xrf,yrf,zrf,xr1,yr1,zr1,'r');
                  [te6,te7,te8,te9,te10]=SolveIK(xlf,ylf,zlf,xl1,yl1,zl1,'l');
-                 thetas = [te1 te2 te3 te4 te5 te6 te7 te8 te9 te10];
+                 thetas = [te1*factor te2 te3 te4 te5*factor te6*factor te7 te8 te9 te10*factor];
             end
         fprintf(fileID,'%d\t',round(thetas));
         fprintf(fileID,'\n');
