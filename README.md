@@ -1,7 +1,7 @@
 # CurvedSlipTurn
  Source Codes for Curved Path Slip Turn using Slip Phenomenon
  Created as part of Paper titled,  "Generating Curved Path Walking Gaits for Biped Robots with Deficient Degrees of Freedom"
- Authors: Prasanna Venkatesan K S, Prajwal Rajendra Mahendrakar. This paper has been accpeted at the 2021 IEEE/SICE International Symposium for System Integration, 11th-14th Jan 2021, Iwaki, Japan. 
+ Authors: Prasanna Sriganesh, Prajwal Rajendra Mahendrakar. This paper has been accpeted at the 2021 IEEE/SICE International Symposium for System Integration, 11th-14th Jan 2021, Iwaki, Japan. 
 
 If using this code, please cite 
 
